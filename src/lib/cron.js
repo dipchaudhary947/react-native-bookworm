@@ -1,7 +1,7 @@
 import Cron from "cron";
 import https from "https";
 
-const job = new Cron.CronJob("0 * * * *", function () {
+const job = new Cron.CronJob("* 0 0 1 1 *", function () {
   https.get(process.env.API_URL, (res) => {
     if (res.statusCode === 200) console.log("Get request sent successful");
     else console.log("Get request failed", res.statusCode);
@@ -25,10 +25,6 @@ export default job;
 // */30 * * * * -> every 30 minutes
 // */45 * * * * -> every 45 minutes
 // */60 * * * * -> every 60 minutes
-// 0 * * * * -> every hour
-// 0 0 * * * -> every day
-// 0 0 0 * * -> every month
-// 0 0 0 0 * -> every year
 // * 0 0 * * * -> every day at 00:00
 // * 0 0 * * 0 -> At midnight every Sunday
 // * 30 3 15 * * -> At 3:30 on the 15th day of every month
